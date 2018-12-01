@@ -99,7 +99,7 @@ public class Parser {
         ReadXmlExpression prefixre=mapRe.get(notParseExpr+BACKLASH);
         if(prefixre!=null){
             //为了使用过程中对备忘录的数据造成影响，所以应该clone一份
-            prefixre = mapRe.get(notParseExpr+BACKLASH);
+            prefixre = (ReadXmlExpression) mapRe.get(notParseExpr+BACKLASH).clone();
         }
         ReadXmlExpression retTree = buildTree(notParseExpr,prefixre,mapPahtAndRe,mapRe);
         return retTree;

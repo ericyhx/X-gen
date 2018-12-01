@@ -58,9 +58,25 @@ public class ElementExpression extends ReadXmlExpression {
 //                    break;
 //                }
                 //设置为父级节点
-                if(nowEles.size()>0&&ctx.judgeCondition(nowEles.get(0),condition)){
-                    ctx.setPreEles(Arrays.asList(nowEles.get(0)));
+//                if(nowEles.size()>1){
+//                    for(Element element:nowEles){
+//                        if(ctx.judgeCondition(element,condition)){
+//                            ctx.setPreEles(nowEles);
+//                        }
+//                    }
+//                }
+               if(nowEles.size()>0){
+                   if(nowEles.size()>1){
+                       for(Element element:nowEles){
+                           if(ctx.judgeCondition(element,condition)){
+                               ctx.setPreEles(Arrays.asList(element));
+                           }
+                       }
+                   }else if(ctx.judgeCondition(nowEles.get(0),condition)){
+                       ctx.setPreEles(Arrays.asList(nowEles.get(0)));
+                   }
                 }
+
             }
 
         }

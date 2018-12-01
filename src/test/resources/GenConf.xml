@@ -61,7 +61,7 @@
       -->
     </NeedGens>
     <Themes>
-        <Theme id="simple">cn/javaee/themes/simple</Theme>
+        <Theme id="simple">ThemeConf.xml</Theme>
     </Themes>
     <Contants>
         <Constant id="prePackage">cn.javaee</Constant>

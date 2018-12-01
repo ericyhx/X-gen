@@ -3,13 +3,11 @@ package com.demo.design.genconf.implementors.xmlimpl;
 import com.demo.design.genconf.implementors.GenConfImplementor;
 import com.demo.design.genconf.implementors.xmlimpl.builder.GenConfBuilder;
 import com.demo.design.genconf.util.readxml.explaindesign.Context;
+import com.demo.design.genconf.util.readxml.explaindesign.ReadXmlExpression;
 import com.demo.design.genconf.vo.NeedGenModel;
 import com.demo.design.genconf.vo.ThemeModel;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.demo.design.genconf.util.readxml.memontodesign.Parser.parse;
 
@@ -52,11 +50,14 @@ public class GenConfXmlImpl implements GenConfImplementor {
     }
 
     private String[] parseConstantsValues(Context c) {
+        c.init();
         String path = new GenConfBuilder().addGenConf().addSeparator().addContants().addSeparator().addContant().addDollar().build();
+        System.err.println(path);
         return parse(path).interpret(c);
     }
 
     private String[] parseConstantsIds(Context c) {
+        c.init();
         String path = new GenConfBuilder().addGenConf().addSeparator().addContants().addSeparator().addContant().addDollar().addDot().addId().addDollar().build();
         return parse(path).interpret(c);
     }
@@ -68,18 +69,20 @@ public class GenConfXmlImpl implements GenConfImplementor {
         for (int i = 0; i < ids.length; i++) {
             ThemeModel model=new ThemeModel();
             model.setId(ids[i]);
-            model.setLocation(location[i]);
+            model.setFileName(location[i]);
             models.add(model);
         }
         return models;
     }
 
     private String[] parseThemeLoc(Context c) {
+        c.init();
         String path = new GenConfBuilder().addGenConf().addSeparator().addThemes().addSeparator().addTheme().addDollar().build();
         return parse(path).interpret(c);
     }
 
     private String[] parseThemeIds(Context c) {
+        c.init();
         String path = new GenConfBuilder().addGenConf().addSeparator().addThemes().addSeparator().addTheme().addDollar().addDot().addId().addDollar().build();
         return parse(path).interpret(c);
     }
@@ -103,39 +106,56 @@ public class GenConfXmlImpl implements GenConfImplementor {
     }
 
     private String[] parseThemes(Context c) {
-        String path = new GenConfBuilder().addGenConf().addSeparator().addNeedGens().addSeparator().addNeedGen().addDollar().addDot().addThemeId().addDollar().build();
-        return parse(path).interpret(c);
+        c.init();
+        String path = new GenConfBuilder().addGenConf().addSeparator()
+                .addNeedGens().addSeparator()
+                .addNeedGen().addDollar().addDot().addThemeId().addDollar().build();
+        ReadXmlExpression re = parse(path);
+        String[] ss = re.interpret(c);
+        return ss;
     }
 
     private String[] parseProviders(Context c) {
+        c.init();
         String path = new GenConfBuilder().addGenConf().addSeparator().addNeedGens().addSeparator().addNeedGen().addDollar().addDot().addProvider().addDollar().build();
         return parse(path).interpret(c);
     }
 
     private String[] parseIds(Context c) {
+        c.init();
         String path = new GenConfBuilder().addGenConf().addSeparator().addNeedGens().addSeparator().addNeedGen().addDollar().addDot().addId().addDollar().build();
         return parse(path).interpret(c);
     }
     private String[] parseParamsValues(Context c,String needGenId) {
+        c.init();
         String path = new GenConfBuilder().addGenConf().addSeparator().addNeedGens().addSeparator().addNeedGen().addOpenbacket().addId().addEqual()
                 .addOtherValue(needGenId).addClosebacket().addSeparator().addParams().addDollar().addSeparator().addParam().addDollar().build();
-        System.out.println(path);
         return parse(path).interpret(c);
     }
     private String[] parseParamsIds(Context c,String needGenId) {
+        c.init();
         String path = new GenConfBuilder().addGenConf().addSeparator().addNeedGens().addSeparator().addNeedGen().addOpenbacket().addId().addEqual()
-                .addOtherValue(needGenId).addClosebacket().addSeparator().addParams().addSeparator().addParam().addDollar().addDot().addId().addDollar().build();
-        System.out.println(path);
+                .addOtherValue(needGenId).addClosebacket().addSeparator().addParams().addDollar().addSeparator().addParam().addDollar().addDot().addId().addDollar().build();
         return parse(path).interpret(c);
     }
     private Map<String,String> parseParams(Context c,String needGenId){
+        c.init();
         Map<String,String> map=new HashMap<>();
         String[] ids=parseParamsIds(c,needGenId);
         String[] values=parseParamsValues(c,needGenId);
         for (int i = 0; i < ids.length; i++) {
+            System.out.println("id="+ids[i]+":"+"value="+values[i]);
             map.put(ids[i],values[i]);
         }
         return map;
     }
 
+    public static void main(String[] args) {
+        GenConfXmlImpl gen=new GenConfXmlImpl();
+//        String[] ss = gen.parseThemes(gen.getContext());
+//        System.out.println(Arrays.toString(ss));
+        Map<String, String> map = gen.parseParams(gen.getContext(), "UserGenConf1");
+        System.out.println(map.size());
+
+    }
 }

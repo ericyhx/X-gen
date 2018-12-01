@@ -1,11 +1,13 @@
 package com.demo.design.genconf;
 
+import com.demo.design.genconf.implementors.xmlimpl.GenConfXmlImpl;
 import com.demo.design.genconf.util.readxml.componentdesign.Parser2;
 import com.demo.design.genconf.util.readxml.explaindesign.Context;
 import com.demo.design.genconf.util.readxml.explaindesign.ElementExpression;
 import com.demo.design.genconf.util.readxml.explaindesign.ElementsExpression;
 import com.demo.design.genconf.util.readxml.explaindesign.ElementsTerminalExpression;
 import com.demo.design.genconf.util.readxml.memontodesign.Parser;
+import com.demo.design.genconf.vo.GenconfModel;
 import org.junit.Test;
 
 public class MyTest {
@@ -57,5 +59,12 @@ public class MyTest {
 //        for (String s:ss2){
 //            System.out.println("ss=="+s);
 //        }
+    }
+
+    @Test
+    public void genConfebi() {
+        GenConfEbi ebi=GenConfFactory.cteateGenConfEbi(new GenConfXmlImpl());
+        GenconfModel model = ebi.getGenConf();
+        System.out.println(model);
     }
 }

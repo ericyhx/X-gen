@@ -8,7 +8,7 @@ import java.util.Map;
 @Data
 public class ThemeModel {
     private String id;
-    private String location;
+    private String fileName;
     private Map<String,GenTypeModel> mapGenTypes=new HashMap<>();
     private Map<String,String> mapGenOutTypes=new HashMap<>();
     private Map<String,String> mapProviders=new HashMap<>();
