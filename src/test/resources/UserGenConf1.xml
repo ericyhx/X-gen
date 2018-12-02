@@ -37,7 +37,7 @@
         <ExtendConf id="action_queryModelName" isSingle="true">tcm</ExtendConf>
         <ExtendConf id="action_webModelName" isSingle="true">tcm</ExtendConf>
         <ExtendConf id="tblName" isSingle="true">tbl_user</ExtendConf>
-        <ExtendConf id="listViewNum" isSingle="true">${}</ExtendConf>
+        <ExtendConf id="listViewNum" isSingle="true">${mapEcms.get("voFields").getValues().length;}</ExtendConf>
         <ExtendConf id="pagesPath" isSingle="true">test</ExtendConf>
         <ExtendConf id="moduleName_CN" isSingle="true">用戶管理</ExtendConf>
         <ExtendConf id="columnName" isSingle="false">用戶编号，密码，姓名，工号，性别，电话，地址，毕业院校</ExtendConf>

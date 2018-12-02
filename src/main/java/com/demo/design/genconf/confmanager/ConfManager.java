@@ -35,13 +35,19 @@ public class ConfManager {
     private void  readConf(GenConfImplementor tempGenConf){
         //正真的获取配置数据
         //然后把获取到的配置数据设置到属性上，缓存起来
-        this.genConf.setNeedGens(tempGenConf.getNeedGens());
-        this.genConf.setMapConstants(tempGenConf.getMapConstants());
-        this.genConf.setThemes(tempGenConf.getThemes());
+       readGenConf(provider);
         fillThemeModel();
-        fillNeedGenModel();
-
+       for(NeedGenModel ngm:genConf.getNeedGens()){
+           readOneModuleGenConf(ngm);
+        }
     }
+
+    private void readGenConf(GenConfImplementor provider) {
+        this.genConf.setNeedGens(provider.getNeedGens());
+        this.genConf.setMapConstants(provider.getMapConstants());
+        this.genConf.setThemes(provider.getThemes());
+    }
+
     public GenconfModel getGenConf() {
         return genConf;
     }
@@ -49,23 +55,6 @@ public class ConfManager {
     public Map<String, ModuleConfModel> getMapModuleConf() {
         return mapModuleConf;
     }
-
-
-    private void fillNeedGenModel() {
-        List<NeedGenModel> needGens = this.genConf.getNeedGens();
-        for(NeedGenModel needGen:needGens){
-            Collection<String> values = needGen.getMapParams().values();
-            for(String fileName:values){
-                ModuleGenConfImplementor moduleImpl=new ModuleGenConfXmlImpl(fileName);
-                ModuleConfModel module = moduleImpl.getBaseModuleConfModel();
-                module.setMapExtends(moduleImpl.getMapExtends());
-                module.setMapNeedGenTypes(moduleImpl.getMapNeedGenTypes());
-                module.setUseTheme(needGen.getTheme());
-                mapModuleConf.put(module.getModelId(),module);
-            }
-        }
-    }
-
     private void fillThemeModel() {
         List<ThemeModel> themes = this.genConf.getThemes();
         for(ThemeModel theme:themes){
@@ -75,5 +64,29 @@ public class ConfManager {
             theme.setMapProviders(tempTheme.getMapProviders());
         }
     }
-
+    private void readOneModuleGenConf(NeedGenModel ngm){
+        ThemeModel tm = this.genConf.getThemeById(ngm.getTheme());
+        String providerClzName="";
+        ModuleGenConfImplementor userGenConfImpl=null;
+        if(tm!=null){
+            providerClzName=tm.getMapProviders().get(ngm.getProvider());
+        }
+        if(providerClzName.trim().length()==0)return;
+        try {
+            userGenConfImpl= (ModuleGenConfImplementor) Class.forName(providerClzName).newInstance();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        if(userGenConfImpl==null) return;
+       for(String moduleName: ngm.getMapParams().values()){
+           userGenConfImpl.setModuleFileName(moduleName);
+       }
+        ModuleConfModel mcm=userGenConfImpl.getBaseModuleConfModel();
+        mcm.setUseTheme(ngm.getTheme());
+        mcm.setMapNeedGenTypes(userGenConfImpl.getMapNeedGenTypes());
+        //解析Extends应该放到其他解析的后面，因为如果有动态解析的话需要使用其他的值
+        mcm.setMapExtends(userGenConfImpl.getMapExtends(genConf));
+        //设置到缓存里面
+        this.mapModuleConf.put(mcm.getModelId(),mcm);
+    }
 }

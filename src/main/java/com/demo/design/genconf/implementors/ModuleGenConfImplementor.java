@@ -1,6 +1,7 @@
 package com.demo.design.genconf.implementors;
 
 import com.demo.design.genconf.vo.ExtendConfModel;
+import com.demo.design.genconf.vo.GenconfModel;
 import com.demo.design.genconf.vo.ModuleConfModel;
 
 import java.util.List;
@@ -25,5 +26,7 @@ public interface ModuleGenConfImplementor {
      */
     public Map<String, List<String>> getMapNeedGenTypes();
 
-    public Map<String, ExtendConfModel> getMapExtends();
+    public Map<String, ExtendConfModel> getMapExtends(GenconfModel gm);
+
+    public void setModuleFileName(String name);
 }

@@ -136,8 +136,8 @@
         <GenOutType id="My" type="cn.javaee.themes.simple.outputtypes.MyOutput"></GenOutType>
     </GenOutTypes>
     <Providers>
-        <Provider id="XmlGenConf" type="cn.javaee.xgen.genconf.implementors.xmlimpl.GenConfXmlImpl"></Provider>
-        <Provider id="XmlModuleGenConf" type="cn.javaee.xgen.genconf.implementors.xmlimpl.ModuleGenConfXmlImpl"></Provider>
-        <Provider id="XmlThemeConf" type="cn.javaee.xgen.genconf.implementors.xmlimpl.ThemeXmlImpl"></Provider>
+        <Provider id="XmlGenConf" type="com.demo.design.genconf.implementors.xmlimpl.GenConfXmlImpl"></Provider>
+        <Provider id="XmlModuleGenConf" type="com.demo.design.genconf.implementors.xmlimpl.ModuleGenConfXmlImpl"></Provider>
+        <Provider id="XmlThemeConf" type="com.demo.design.genconf.implementors.xmlimpl.ThemeXmlImpl"></Provider>
     </Providers>
 </Theme>

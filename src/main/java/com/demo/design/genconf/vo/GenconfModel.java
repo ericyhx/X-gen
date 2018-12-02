@@ -24,4 +24,13 @@ public class GenconfModel {
      * 描述通用的常量定义的集合
      */
     private Map<String,String> mapConstants=new HashMap<>();
+
+    public ThemeModel getThemeById(String theme) {
+        for(ThemeModel tm:this.themes){
+            if(tm.getId().equals(theme)){
+                return tm;
+            }
+        }
+        return null;
+    }
 }

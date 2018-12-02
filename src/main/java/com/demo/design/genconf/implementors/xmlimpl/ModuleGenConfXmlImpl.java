@@ -2,13 +2,17 @@ package com.demo.design.genconf.implementors.xmlimpl;
 
 import com.demo.design.genconf.constants.ExpressionEnum;
 import com.demo.design.genconf.implementors.ModuleGenConfImplementor;
+import com.demo.design.genconf.implementors.dynamicparse.ParseContext;
 import com.demo.design.genconf.implementors.xmlimpl.builder.GenConfBuilder;
 import com.demo.design.genconf.implementors.xmlimpl.builder.ModuleGenConfBuilder;
 import com.demo.design.genconf.util.readxml.explaindesign.Context;
 import com.demo.design.genconf.util.readxml.explaindesign.ReadXmlExpression;
 import com.demo.design.genconf.util.readxml.memontodesign.Parser;
 import com.demo.design.genconf.vo.ExtendConfModel;
+import com.demo.design.genconf.vo.GenconfModel;
 import com.demo.design.genconf.vo.ModuleConfModel;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,12 +20,16 @@ import java.util.List;
 import java.util.Map;
 
 public class ModuleGenConfXmlImpl implements ModuleGenConfImplementor {
+
+    @Setter@Getter
     private String moduleFileName;
 
-    public ModuleGenConfXmlImpl(String moduleFileName) {
-        this.moduleFileName = moduleFileName;
+    public ModuleGenConfXmlImpl() {
     }
-
+    @Override
+    public void setModuleFileName(String name) {
+        this.moduleFileName=name;
+    }
     @Override
     public ModuleConfModel getBaseModuleConfModel() {
         ModuleConfModel mcm=new ModuleConfModel();
@@ -40,7 +48,7 @@ public class ModuleGenConfXmlImpl implements ModuleGenConfImplementor {
         return map;
     }
     @Override
-    public Map<String, ExtendConfModel> getMapExtends() {
+    public Map<String, ExtendConfModel> getMapExtends(GenconfModel gm) {
         Map<String, ExtendConfModel> map=new HashMap<>();
         String[] extendids=parseExtendIds(this.getContext());
         String[] isSingles=parseIsSingles(this.getContext());
@@ -55,8 +63,12 @@ public class ModuleGenConfXmlImpl implements ModuleGenConfImplementor {
             }
             map.put(extendids[i],model);
         }
+        //等读取完成后，再来进行动态的解析
+        ParseContext pctx=new ParseContext();
+        pctx.parse(gm,map);
         return map;
     }
+
     private Context getContext(Map<String, String> param){
         Context c=null;
         try {
