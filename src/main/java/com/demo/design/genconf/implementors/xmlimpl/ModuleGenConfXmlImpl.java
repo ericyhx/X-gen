@@ -17,29 +17,34 @@ import java.util.Map;
 
 public class ModuleGenConfXmlImpl implements ModuleGenConfImplementor {
     private String moduleFileName;
+
+    public ModuleGenConfXmlImpl(String moduleFileName) {
+        this.moduleFileName = moduleFileName;
+    }
+
     @Override
-    public ModuleConfModel getBaseModuleConfModel(Map<String, String> param) {
+    public ModuleConfModel getBaseModuleConfModel() {
         ModuleConfModel mcm=new ModuleConfModel();
         //设置模块标识
-        parseModuleId(mcm,this.getContext(param));
+        parseModuleId(mcm,this.getContext());
         return mcm;
     }
 
     @Override
-    public Map<String, List<String>> getMapNeedGenTypes(Map<String, String> param) {
+    public Map<String, List<String>> getMapNeedGenTypes() {
         Map<String, List<String>> map=new HashMap<>();
-        String[] needGenIds=parseNeedGenIds(this.getContext(param));
+        String[] needGenIds=parseNeedGenIds(this.getContext());
         for (int i = 0; i < needGenIds.length; i++) {
-            map.put(needGenIds[i],parseNeedGenOutType(this.getContext(param)));
+            map.put(needGenIds[i],parseNeedGenOutType(this.getContext()));
         }
         return map;
     }
     @Override
-    public Map<String, ExtendConfModel> getMapExtends(Map<String, String> param) {
+    public Map<String, ExtendConfModel> getMapExtends() {
         Map<String, ExtendConfModel> map=new HashMap<>();
-        String[] extendids=parseExtendIds(this.getContext(param));
-        String[] isSingles=parseIsSingles(this.getContext(param));
-        String[] values=parseExendValues(this.getContext(param));
+        String[] extendids=parseExtendIds(this.getContext());
+        String[] isSingles=parseIsSingles(this.getContext());
+        String[] values=parseExendValues(this.getContext());
         for (int i = 0; i < extendids.length; i++) {
             ExtendConfModel model=new ExtendConfModel();
             model.setId(extendids[i]);
@@ -64,7 +69,7 @@ public class ModuleGenConfXmlImpl implements ModuleGenConfImplementor {
     private Context getContext(){
         Context c=null;
         try {
-            c=Context.getInstance(new GenConfBuilder().addOtherValue("UserGenConf").addDot().addXml().build());
+            c=Context.getInstance(new GenConfBuilder().addOtherValue(moduleFileName).build());
         }catch (Exception e){
             e.printStackTrace();
         }

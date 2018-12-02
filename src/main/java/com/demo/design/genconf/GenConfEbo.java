@@ -12,11 +12,15 @@ import java.util.Map;
  * 负责完成配置管理模块的业务功能
  */
 public class GenConfEbo implements GenConfEbi {
-    private static GenConfImplementor genConf;
-    private GenConfEbo(){}
-    private static GenConfEbo ebo=new GenConfEbo();
-    public static GenConfEbo getInstance(GenConfImplementor genConfImpl){
-        genConf=genConfImpl;
+    private static GenConfImplementor provider;
+    private GenConfEbo(GenConfImplementor provider){
+        this.provider=provider;
+    }
+    private static GenConfEbo ebo=null;
+    public static GenConfEbo getInstance(GenConfImplementor provider){
+        if(ebo==null){
+            ebo=new GenConfEbo(provider);
+        }
         return ebo;
     }
 /*
@@ -26,12 +30,12 @@ public class GenConfEbo implements GenConfEbi {
     @Override
     public GenconfModel getGenConf() {
         //获取相应的配置数据
-        return ConfManager.genInstance().getGenConf(genConf);
+        return ConfManager.genInstance(provider).getGenConf();
     }
 
     @Override
     public Map<String, ModuleConfModel> getMapModuleConf() {
         //获取相应的配置数据
-        return ConfManager.genInstance().getMapModuleConf();
+        return ConfManager.genInstance(provider).getMapModuleConf();
     }
 }

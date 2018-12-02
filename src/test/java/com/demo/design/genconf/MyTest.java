@@ -8,7 +8,10 @@ import com.demo.design.genconf.util.readxml.explaindesign.ElementsExpression;
 import com.demo.design.genconf.util.readxml.explaindesign.ElementsTerminalExpression;
 import com.demo.design.genconf.util.readxml.memontodesign.Parser;
 import com.demo.design.genconf.vo.GenconfModel;
+import com.demo.design.genconf.vo.ModuleConfModel;
 import org.junit.Test;
+
+import java.util.Map;
 
 public class MyTest {
     @Test
@@ -66,5 +69,8 @@ public class MyTest {
         GenConfEbi ebi=GenConfFactory.cteateGenConfEbi(new GenConfXmlImpl());
         GenconfModel model = ebi.getGenConf();
         System.out.println(model);
+        System.out.println("============================================================");
+        Map<String, ModuleConfModel> models = ebi.getMapModuleConf();
+        System.out.println(models);
     }
 }

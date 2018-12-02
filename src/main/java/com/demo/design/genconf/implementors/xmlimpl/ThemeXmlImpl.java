@@ -9,6 +9,7 @@ import com.demo.design.genconf.util.readxml.memontodesign.Parser;
 import com.demo.design.genconf.vo.GenTypeModel;
 import com.demo.design.genconf.vo.GenconfModel;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public class ThemeXmlImpl implements ThemeImplementor {
         this.themeFileName = themeFileName;
     }
     @Override
-    public Map<String, GenTypeModel> getMapGenType(String themeId, Map<String, String> params) {
+    public Map<String, GenTypeModel> getMapGenType() {
         Map<String, GenTypeModel> map=new HashMap<>();
         String[] genTypeids=parseGenTypeIds(this.getContext());
         String[] genTypeClzs=parseGenTypeClzs(this.getContext());
@@ -31,14 +32,15 @@ public class ThemeXmlImpl implements ThemeImplementor {
             String[] paramValues=parseParamValues(this.getContext());
             Map<String,String> paramMap=new HashMap<>();
             for (int j = 0; j < paramIds.length; j++) {
-                paramMap.put(paramIds[i],paramValues[i]);
+                paramMap.put(paramIds[j],paramValues[j]);
             }
             model.setMapParms(paramMap);
+            map.put(model.getId(),model);
         }
         return map;
     }
     @Override
-    public Map<String, String> getMapGenOutTypes(String themeId, Map<String, String> params) {
+    public Map<String, String> getMapGenOutTypes() {
         Map<String, String> map=new HashMap<>();
         String[] ids=parseGenOutTypeIds(this.getContext());
         String[] types=parseGenOutTypeTypes(this.getContext());
@@ -48,7 +50,7 @@ public class ThemeXmlImpl implements ThemeImplementor {
         return map;
     }
     @Override
-    public Map<String, String> getMapProviders(String themeId, Map<String, String> params) {
+    public Map<String, String> getMapProviders() {
         Map<String, String> map=new HashMap<>();
         String[] ids=parseProviderIds(this.getContext());
         String[] types=parseProviderTypes(this.getContext());
@@ -61,7 +63,7 @@ public class ThemeXmlImpl implements ThemeImplementor {
     private Context getContext(){
         Context c=null;
         try {
-            c=Context.getInstance(new GenConfBuilder().addOtherValue(themeFileName).addDot().addXml().build());
+            c=Context.getInstance(new GenConfBuilder().addOtherValue(themeFileName).build());
         }catch (Exception e){
             e.printStackTrace();
         }

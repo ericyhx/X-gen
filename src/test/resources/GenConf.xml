@@ -4,7 +4,6 @@
         <NeedGen id="UserGenConf" provider="XmlModuleGenConf" themeId="simple">
             <Params>
                 <Param id="fileName1">UserGenConf.xml</Param>
-                <Param id="fileName2">UserGenConf22.xml</Param>
             </Params>
         </NeedGen>
         <NeedGen id="UserGenConf1" provider="XmlModuleGenConf" themeId="simple">

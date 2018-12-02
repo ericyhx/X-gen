@@ -1,6 +1,7 @@
 package com.demo.design.genconf.implementors.xmlimpl;
 
 import com.demo.design.genconf.implementors.GenConfImplementor;
+import com.demo.design.genconf.implementors.ThemeImplementor;
 import com.demo.design.genconf.implementors.xmlimpl.builder.GenConfBuilder;
 import com.demo.design.genconf.util.readxml.explaindesign.Context;
 import com.demo.design.genconf.util.readxml.explaindesign.ReadXmlExpression;
@@ -52,7 +53,6 @@ public class GenConfXmlImpl implements GenConfImplementor {
     private String[] parseConstantsValues(Context c) {
         c.init();
         String path = new GenConfBuilder().addGenConf().addSeparator().addContants().addSeparator().addContant().addDollar().build();
-        System.err.println(path);
         return parse(path).interpret(c);
     }
 
@@ -144,18 +144,8 @@ public class GenConfXmlImpl implements GenConfImplementor {
         String[] ids=parseParamsIds(c,needGenId);
         String[] values=parseParamsValues(c,needGenId);
         for (int i = 0; i < ids.length; i++) {
-            System.out.println("id="+ids[i]+":"+"value="+values[i]);
             map.put(ids[i],values[i]);
         }
         return map;
-    }
-
-    public static void main(String[] args) {
-        GenConfXmlImpl gen=new GenConfXmlImpl();
-//        String[] ss = gen.parseThemes(gen.getContext());
-//        System.out.println(Arrays.toString(ss));
-        Map<String, String> map = gen.parseParams(gen.getContext(), "UserGenConf1");
-        System.out.println(map.size());
-
     }
 }
