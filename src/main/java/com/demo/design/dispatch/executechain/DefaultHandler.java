@@ -16,7 +16,7 @@ public class DefaultHandler extends GenHandler {
     @Override
     public void handlerRequest(ModuleConfModel mcm) {
         //1：本职责对象要实现的功能，继续调用真正实现生成功能的模块
-        CoreMediator.getInstance().needProxyGen();
+        CoreMediator.getInstance().needProxyGen(needGenTyoe,mcm);
         //2：交给弗父类，继续职责链的后续处理
         super.handlerRequest(mcm);
     }

@@ -4,6 +4,8 @@ import com.demo.design.genconf.GenConfFactory;
 import com.demo.design.genconf.implementors.GenConfImplementor;
 import com.demo.design.genconf.implementors.xmlimpl.GenConfXmlImpl;
 import com.demo.design.genconf.vo.ModuleConfModel;
+import com.demo.design.geninvocation.GenInvocation;
+import com.demo.design.geninvocation.GenInvocationFactory;
 import com.demo.design.genproxy.GenProxyFactory;
 
 import java.util.Collection;
@@ -25,7 +27,11 @@ public class CoreMediator {
         return GenConfFactory.cteateGenConfEbi(provider).getMapModuleConf().values();
 
     }
-    public void needProxyGen(){
-        GenProxyFactory.createGenProxy();
+    public void needProxyGen(String needGenType, ModuleConfModel mouduleConf){
+        GenProxyFactory.createGenProxy(needGenType,mouduleConf);
+    }
+    public GenInvocation getDefaultGenInvocation(String needGenType, ModuleConfModel mouduleConf){
+        GenInvocation invocation= GenInvocationFactory.createGenInvocation(needGenType,mouduleConf);
+        return invocation;
     }
 }
