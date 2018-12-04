@@ -1,6 +1,7 @@
 package com.demo.design.dispatch.executechain;
 
 import com.demo.design.genconf.vo.ModuleConfModel;
+import com.demo.design.mediator.CoreMediator;
 
 public class DefaultHandler extends GenHandler {
     /**
@@ -15,7 +16,7 @@ public class DefaultHandler extends GenHandler {
     @Override
     public void handlerRequest(ModuleConfModel mcm) {
         //1：本职责对象要实现的功能，继续调用真正实现生成功能的模块
-
+        CoreMediator.getInstance().needProxyGen();
         //2：交给弗父类，继续职责链的后续处理
         super.handlerRequest(mcm);
     }
