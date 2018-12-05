@@ -24,6 +24,7 @@ public abstract class BaseAction {
     }
 
     /**
+     * 工厂方法模式
      * 原语操作，初始化封装generate生成内容的对象
      * @return
      */
