@@ -1,4 +1,4 @@
-package com.demo.design.state;
+package com.demo.design.geninvocation.state;
 
 
 import com.demo.design.geninvocation.DefaultGenInvocation;
