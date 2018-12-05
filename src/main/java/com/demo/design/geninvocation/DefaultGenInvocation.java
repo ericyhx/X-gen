@@ -1,8 +1,8 @@
 package com.demo.design.geninvocation;
 
 import com.demo.design.genconf.vo.ModuleConfModel;
-import com.demo.design.state.DefaultBeginState;
-import com.demo.design.state.State;
+import com.demo.design.geninvocation.state.DefaultBeginState;
+import com.demo.design.geninvocation.state.State;
 import lombok.Getter;
 import lombok.Setter;
 
