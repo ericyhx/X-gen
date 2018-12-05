@@ -34,4 +34,7 @@ public class CoreMediator {
         GenInvocation invocation= GenInvocationFactory.createGenInvocation(needGenType,mouduleConf);
         return invocation;
     }
+    public String getNeedGenTypeClz(ModuleConfModel moduleConf,String needGenTypeId){
+        return GenConfFactory.cteateGenConfEbi().getThemeGenType(moduleConf,needGenTypeId).getGenTypeClz();
+    }
 }
