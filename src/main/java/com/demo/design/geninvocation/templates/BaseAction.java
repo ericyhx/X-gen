@@ -1,4 +1,4 @@
-package com.demo.design.geninvocation.templetes;
+package com.demo.design.geninvocation.templates;
 
 import com.demo.design.genconf.vo.ModuleConfModel;
 

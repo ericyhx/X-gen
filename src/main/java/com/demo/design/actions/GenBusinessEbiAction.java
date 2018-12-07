@@ -1,7 +1,7 @@
 package com.demo.design.actions;
 
 import com.demo.design.genconf.vo.ModuleConfModel;
-import com.demo.design.geninvocation.templetes.BaseAction;
+import com.demo.design.geninvocation.templates.BaseAction;
 
 public class GenBusinessEbiAction extends BaseAction {
     @Override

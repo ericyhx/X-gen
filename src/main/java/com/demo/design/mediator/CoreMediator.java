@@ -3,12 +3,16 @@ package com.demo.design.mediator;
 import com.demo.design.genconf.GenConfFactory;
 import com.demo.design.genconf.implementors.GenConfImplementor;
 import com.demo.design.genconf.implementors.xmlimpl.GenConfXmlImpl;
+import com.demo.design.genconf.vo.GenTypeModel;
 import com.demo.design.genconf.vo.ModuleConfModel;
+import com.demo.design.geninvocation.DefaultGenInvocation;
 import com.demo.design.geninvocation.GenInvocation;
 import com.demo.design.geninvocation.GenInvocationFactory;
 import com.demo.design.genproxy.GenProxyFactory;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Observer;
 
 /**
  * 核心框架的中介者对象
@@ -36,5 +40,27 @@ public class CoreMediator {
     }
     public String getNeedGenTypeClz(ModuleConfModel moduleConf,String needGenTypeId){
         return GenConfFactory.cteateGenConfEbi().getThemeGenType(moduleConf,needGenTypeId).getGenTypeClz();
+    }
+
+    public Object templateReplaceProperty(Object obj) {
+        return null;
+    }
+    public Object getTemplateContent(ModuleConfModel moduleConf,String genTypeId){
+        return null;
+    }
+    public void registerObservers(DefaultGenInvocation ctx){
+        //1:获得相应的NeedGenOutType的id
+        List<String> needGenOutTypeIds = ctx.getMouduleConf().getMapNeedGenTypes().get(ctx.getNeedGenType());
+        //2:根据NeedGenOutType的id获得相应的OutType的类的定义
+        for(String id:needGenOutTypeIds){
+            String genOutTypeClz = GenConfFactory.cteateGenConfEbi().getThemeGenType(ctx.getMouduleConf(), id).getGenTypeClz();
+            try {
+                Observer o = (Observer) Class.forName(genOutTypeClz).newInstance();
+                ctx.addOberver(o);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        //3:用反射创建这些类的实例，这些类就是Observer
     }
 }

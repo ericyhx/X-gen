@@ -6,10 +6,15 @@ import com.demo.design.geninvocation.state.State;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observer;
+
 /**
  * 本地默认具体实现
  */
 public class DefaultGenInvocation implements GenInvocation {
+    private List<Observer> obs=new ArrayList<>();
     /**
      * 上下文中持有一个状态对象
      */
@@ -47,5 +52,9 @@ public class DefaultGenInvocation implements GenInvocation {
      */
     public void  doWork(){
         this.state.doWork(this);
+    }
+
+    public void addOberver(Observer o) {
+        this.obs.add(o);
     }
 }

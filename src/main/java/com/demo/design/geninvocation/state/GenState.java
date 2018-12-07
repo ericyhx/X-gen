@@ -2,7 +2,7 @@ package com.demo.design.geninvocation.state;
 
 
 import com.demo.design.geninvocation.DefaultGenInvocation;
-import com.demo.design.geninvocation.templetes.BaseAction;
+import com.demo.design.geninvocation.templates.BaseAction;
 import com.demo.design.mediator.CoreMediator;
 
 public class GenState implements State {
