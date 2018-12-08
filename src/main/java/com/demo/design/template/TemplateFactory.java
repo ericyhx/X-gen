@@ -6,7 +6,7 @@ public class TemplateFactory {
     private TemplateFactory() {
     }
 
-    public static TemplateEbi createTemplateEbi(ModuleConfModel moduleConf){
-        return new DefaultTemplateEbo(moduleConf);
+    public static TemplateEbi createTemplateEbi(ModuleConfModel moduleConf,String genTypeId){
+        return new DefaultTemplateEbo(moduleConf,genTypeId);
     }
 }

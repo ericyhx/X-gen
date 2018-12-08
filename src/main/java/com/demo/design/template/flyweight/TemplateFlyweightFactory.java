@@ -1,6 +1,10 @@
 package com.demo.design.template.flyweight;
 
+import com.demo.design.genconf.GenConfFactory;
+import com.demo.design.genconf.constants.ExpressionEnum;
 import com.demo.design.genconf.util.file.FileHelper;
+import com.demo.design.genconf.vo.ModuleConfModel;
+import com.demo.design.mediator.CoreMediator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,5 +32,10 @@ public class TemplateFlyweightFactory {
             return template;
         }
     }
-
+    public DefaultTemplate getTemplateFlyweight(ModuleConfModel moduleConf,String genTypeId){
+        //帮助拼接模板文件的位置
+        final String mbPathFile = CoreMediator.getInstance().getThemeMbPathFile(moduleConf,genTypeId);
+        final String templatePath = ExpressionEnum.TEMPLATE.getExpr() + ExpressionEnum.SEPARATOR.getExpr() + mbPathFile;
+        return getTemplateweight(templatePath);
+    }
 }

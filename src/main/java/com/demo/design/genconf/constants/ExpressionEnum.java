@@ -10,6 +10,11 @@ public enum  ExpressionEnum {
     CLOSEBACKET("]"),
     EQUAL("="),
     XML("xml"),
+    PROBEGINSTR("${"),
+    PROENDSTR("}"),
+    METHODBEGINSTR("$["),
+    METHODENDSTR("]"),
+    TEMPLATE("template"),
     COMMON(",");
     @Getter
     private String expr;

@@ -63,4 +63,11 @@ public class CoreMediator {
         }
         //3:用反射创建这些类的实例，这些类就是Observer
     }
+    public String getThemeMbPathFile(ModuleConfModel moduleConf,String genTypeId){
+        return GenConfFactory.cteateGenConfEbi().getGenConf().getThemeById(moduleConf.getUseTheme())
+                .getMapGenTypes().get(genTypeId).getMapParms().get("mbPathFile");
+    }
+    public String getThemePath(ModuleConfModel moduleConf){
+        return GenConfFactory.cteateGenConfEbi().getGenConf().getThemeById(moduleConf.getUseTheme()).getFileName();
+    }
 }

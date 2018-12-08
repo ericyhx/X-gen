@@ -1,0 +1,44 @@
+package ${modulePackage}.vo;
+
+public class ${moduleNameSuperCase} Model implements java.io.Serializable{
+    public static final String TBL_NAME="tble_${moduleNameSuperCase}";
+    private String uuid;
+    $[cn.javas.themes.simple.visitors.VoOropertiesDesign]
+
+    public String getUuid(){
+        return uuid;
+    }
+    public void setUuid(String uuid){
+        this.uuid=uuid;
+    }
+    $[cn.javas.themes.simple.visitors.GetterAndSetter]
+    public int hashCode(){
+        final int prime=31;
+        int result=1;
+        result=prime*result+((uuid==null)?0:uuid.hashCode());
+    }
+    public boolean equals(Object obj){
+        if(this==obj){
+            return true;
+        }
+        if(obj==null){
+            return false;
+        }
+        if(getClass()!=obj.getClass()){
+            return false;
+        }
+        final ${moduleNameSuperCase}Model other=(${moduleNameSuperCase}Model) obj;
+        if(uuid==null){
+            if(other.uuid!=null){
+                return false;
+            }
+        }else if(!uuid.equals(other.uuid){
+            return false;
+        }
+        return true;
+    }
+    public String toString(){
+        $[cn.javas.themes.simple.visitors.ToStringStr]
+        return buffer.toString();
+    }
+}

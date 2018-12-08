@@ -1,6 +1,7 @@
 package com.demo.design.geninvocation.templates;
 
 import com.demo.design.genconf.vo.ModuleConfModel;
+import com.demo.design.geninvocation.decorator.GenComponent;
 
 /**
  * 引入模板方法
@@ -34,8 +35,9 @@ public abstract class BaseAction {
      * 钩子操作，在执行action之前要实现的功能
      * @param moduleConf
      */
-    public void beforeAction(ModuleConfModel moduleConf){
+    public GenComponent beforeAction(ModuleConfModel moduleConf){
 
+        return null;
     }
     /**
      * 钩子操作，在执行action之后要实现的功能
@@ -52,4 +54,9 @@ public abstract class BaseAction {
      * @return
      */
     public abstract Object execute(ModuleConfModel moduleConf,Object obj);
+    public abstract Object executeDecorators(ModuleConfModel moduleConf, Object obj, GenComponent gc);
+
+    protected GenComponent defaultBeforeAction(ModuleConfModel moduleConf) {
+        return null;
+    }
 }
