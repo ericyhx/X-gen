@@ -2,6 +2,7 @@ package com.demo.design.geninvocation.state;
 
 import com.demo.design.geninvocation.DefaultGenInvocation;
 import com.demo.design.mediator.CoreMediator;
+import com.demo.design.template.DefaultTemplateEbo;
 
 public class OutState implements State {
     @Override
@@ -13,6 +14,6 @@ public class OutState implements State {
         //2:通知观察者
         ctx.setContentOver(ctx.getTempContent());
         //设置后续state，现在还没有
-        System.out.println("over content:"+ctx.getTempContent());
+        System.out.println("over content:"+((DefaultTemplateEbo)ctx.getTempContent()).getNowContent());
     }
 }

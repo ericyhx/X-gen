@@ -9,6 +9,8 @@ import com.demo.design.geninvocation.DefaultGenInvocation;
 import com.demo.design.geninvocation.GenInvocation;
 import com.demo.design.geninvocation.GenInvocationFactory;
 import com.demo.design.genproxy.GenProxyFactory;
+import com.demo.design.template.TemplateEbi;
+import com.demo.design.template.TemplateFactory;
 
 import java.util.Collection;
 import java.util.List;
@@ -43,10 +45,11 @@ public class CoreMediator {
     }
 
     public Object templateReplaceProperty(Object obj) {
-        return null;
+        return ((TemplateEbi)obj).replaceProperty();
     }
     public Object getTemplateContent(ModuleConfModel moduleConf,String genTypeId){
-        return null;
+        //直接传递模板管理的对象
+        return TemplateFactory.createTemplateEbi(moduleConf,genTypeId);
     }
     public void registerObservers(DefaultGenInvocation ctx){
         //1:获得相应的NeedGenOutType的id

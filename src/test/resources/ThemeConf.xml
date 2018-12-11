@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Theme id="simple">
     <GenTypes>
-        <GenType id="GenBusinessEbi" type="com.demo.design.action.GenBusinessEbiAction">
+        <GenType id="GenBusinessEbi" type="com.demo.design.actions.GenBusinessEbiAction">
             <Params>
                 <Param id="relativePath">business.ebi</Param>
                 <Param id="mbPathFile">business/Ebi.txt</Param>
@@ -9,7 +9,7 @@
                 <Param id="afterGenFileName">Ebi.java</Param>
             </Params>
         </GenType>
-        <GenType id="GenVo" type="com.demo.design.action.GenVoAction">
+        <GenType id="GenVo" type="com.demo.design.actions.GenVoAction">
             <Params>
                 <Param id="relativePath">vo</Param>
                 <Param id="mbPathFile">vo/Model.txt</Param>
