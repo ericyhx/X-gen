@@ -32,7 +32,7 @@ public class CoreMediator {
 
     }
     public void needProxyGen(String needGenType, ModuleConfModel mouduleConf){
-        GenProxyFactory.createGenProxy(needGenType,mouduleConf);
+        GenProxyFactory.createGenProxy(needGenType,mouduleConf).executeGen();
     }
     public GenInvocation getDefaultGenInvocation(String needGenType, ModuleConfModel mouduleConf){
         GenInvocation invocation= GenInvocationFactory.createGenInvocation(needGenType,mouduleConf);

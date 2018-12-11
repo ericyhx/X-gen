@@ -30,7 +30,8 @@ public class DefaultGenInvocation implements GenInvocation {
      */
     @Getter
     private ModuleConfModel mouduleConf;
-
+    @Getter@Setter
+    private Object tempContent;
     public DefaultGenInvocation(String needGenType, ModuleConfModel mouduleConf) {
         this.needGenType = needGenType;
         this.mouduleConf = mouduleConf;
@@ -56,5 +57,14 @@ public class DefaultGenInvocation implements GenInvocation {
 
     public void addOberver(Observer o) {
         this.obs.add(o);
+    }
+    /**
+     * 通知内容已经生成好了，可以出发联动了
+     * @param obj
+     */
+    public void setContentOver(Object obj) {
+//        this.setChanged();
+//        this.notifyObservers(obj);
+
     }
 }

@@ -6,10 +6,11 @@
             <NeedGenOutType id="My"></NeedGenOutType>
             <NeedGenOutType id="File"></NeedGenOutType>
         </NeedGenType>
-        <NeedGenType id="GenBusinessEbo">
+        <NeedGenType id="GenVo">
             <NeedGenOutType id="File"></NeedGenOutType>
         </NeedGenType>
-        <NeedGenType id="GenVo">
+        <!--
+        <NeedGenType id="GenBusinessEbo">
             <NeedGenOutType id="File"></NeedGenOutType>
         </NeedGenType>
         <NeedGenType id="GenDaoImpl">
@@ -27,6 +28,7 @@
         <NeedGenType id="GenWebModel">
             <NeedGenOutType id="File"></NeedGenOutType>
         </NeedGenType>
+        -->
     </NeedGenTypes>
     <ExtendConfs>
         <ExtendConf id="codeOutPath" isSingle="true">build</ExtendConf>

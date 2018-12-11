@@ -18,7 +18,8 @@ public class GenState implements State {
         }catch (Exception e){
             e.printStackTrace();
         }
-
+        //设置临时内容
+        ctx.setTempContent(obj);
         //设置下一个state
         ctx.setState(new OutState());
         ctx.doWork();

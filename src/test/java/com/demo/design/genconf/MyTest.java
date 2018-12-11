@@ -1,5 +1,6 @@
 package com.demo.design.genconf;
 
+import com.demo.design.dispatch.GenFacade;
 import com.demo.design.genconf.implementors.xmlimpl.GenConfXmlImpl;
 import com.demo.design.genconf.util.readxml.componentdesign.Parser2;
 import com.demo.design.genconf.util.readxml.explaindesign.Context;
@@ -72,5 +73,10 @@ public class MyTest {
         System.out.println("============================================================");
         Map<String, ModuleConfModel> models = ebi.getMapModuleConf();
         System.out.println(models);
+    }
+
+    @Test
+    public void facadeTest() {
+        GenFacade.generate();
     }
 }

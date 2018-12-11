@@ -9,6 +9,15 @@
                 <Param id="afterGenFileName">Ebi.java</Param>
             </Params>
         </GenType>
+        <GenType id="GenVo" type="com.demo.design.action.GenVoAction">
+            <Params>
+                <Param id="relativePath">vo</Param>
+                <Param id="mbPathFile">vo/Model.txt</Param>
+                <Param id="preGenFileName"></Param>
+                <Param id="afterGenFileName">Model.java</Param>
+            </Params>
+        </GenType>
+        <!--
         <GenType id="GenBusinessEbo" type="com.demo.design.action.GenBusinessEboAction">
             <Params>
                 <Param id="relativePath">business.ebo</Param>
@@ -41,6 +50,7 @@
                 <Param id="afterGenFileName">Action.jsp</Param>
             </Params>
         </GenType>
+        -->
     </GenTypes>
     <GenOutTypes>
         <GenOutType id="Console" type="cn.javaee.xgen.output.types.OutputToConsole"></GenOutType>
