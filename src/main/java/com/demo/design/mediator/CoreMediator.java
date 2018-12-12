@@ -47,6 +47,11 @@ public class CoreMediator {
     public Object templateReplaceProperty(Object obj) {
         return ((TemplateEbi)obj).replaceProperty();
     }
+
+    public Object templateReplaceMethods(Object obj) {
+        return ((TemplateEbi)obj).replaceMethod();
+    }
+
     public Object getTemplateContent(ModuleConfModel moduleConf,String genTypeId){
         //直接传递模板管理的对象
         return TemplateFactory.createTemplateEbi(moduleConf,genTypeId);
@@ -57,9 +62,10 @@ public class CoreMediator {
         //2:根据NeedGenOutType的id获得相应的OutType的类的定义
         for(String id:needGenOutTypeIds){
             String genOutTypeClz = GenConfFactory.cteateGenConfEbi().getThemeGenType(ctx.getMouduleConf(), id).getGenTypeClz();
+        //3：用反射创建这些类的实例，这些类就是Observer
             try {
                 Observer o = (Observer) Class.forName(genOutTypeClz).newInstance();
-                ctx.addOberver(o);
+                ctx.addObserver(o);
             }catch (Exception e){
                 e.printStackTrace();
             }

@@ -64,7 +64,7 @@
         <Theme id="simple">ThemeConf.xml</Theme>
     </Themes>
     <Contants>
-        <Constant id="prePackage">cn.javaee</Constant>
-        <Constant id="projectName">test</Constant>
+        <Constant id="prePackage">com.demo.design</Constant>
+        <Constant id="projectName">X-gen</Constant>
     </Contants>
 </GenConf>

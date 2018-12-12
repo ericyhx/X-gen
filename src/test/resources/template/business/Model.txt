@@ -3,7 +3,7 @@ package ${modulePackage}.vo;
 public class ${moduleNameSuperCase} Model implements java.io.Serializable{
     public static final String TBL_NAME="tble_${moduleNameSuperCase}";
     private String uuid;
-    $[cn.javas.themes.simple.visitors.VoOropertiesDesign]
+    $[com.demo.design.themes.simple.visitors.VoPropertiesDesign]
 
     public String getUuid(){
         return uuid;
@@ -11,7 +11,7 @@ public class ${moduleNameSuperCase} Model implements java.io.Serializable{
     public void setUuid(String uuid){
         this.uuid=uuid;
     }
-    $[cn.javas.themes.simple.visitors.GetterAndSetter]
+    $[com.demo.design.themes.simple.visitors.GetterAndSetter]
     public int hashCode(){
         final int prime=31;
         int result=1;
@@ -38,7 +38,6 @@ public class ${moduleNameSuperCase} Model implements java.io.Serializable{
         return true;
     }
     public String toString(){
-        $[cn.javas.themes.simple.visitors.ToStringStr]
         return buffer.toString();
     }
 }

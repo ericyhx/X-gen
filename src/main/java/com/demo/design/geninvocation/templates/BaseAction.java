@@ -1,10 +1,7 @@
 package com.demo.design.geninvocation.templates;
 
 import com.demo.design.genconf.vo.ModuleConfModel;
-import com.demo.design.geninvocation.decorator.DefaultComponent;
-import com.demo.design.geninvocation.decorator.GenComponent;
-import com.demo.design.geninvocation.decorator.ReadTemplateContent;
-import com.demo.design.geninvocation.decorator.ReplaceProperty;
+import com.demo.design.geninvocation.decorator.*;
 
 /**
  * 引入模板方法
@@ -31,6 +28,7 @@ public abstract class BaseAction {
         if(after!=null){
             obj=this.executeDecorators(moduleConf,obj,after);
         }
+        //返回的应该是DefaultTemplateEbo
         return obj;
     }
 
@@ -85,6 +83,7 @@ public abstract class BaseAction {
         GenComponent d1 = new ReadTemplateContent(gc);
         //2:分解模板文件里面需要替换的属性，从muduleConf里面取值替换过去
         GenComponent d2 = new ReplaceProperty(d1);
-        return d2;
+        GenComponent d3 = new ReplaceMethods(d2);
+        return d3;
     }
 }

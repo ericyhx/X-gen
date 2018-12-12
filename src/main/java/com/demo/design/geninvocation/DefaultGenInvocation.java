@@ -8,12 +8,13 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 import java.util.Observer;
 
 /**
  * 本地默认具体实现
  */
-public class DefaultGenInvocation implements GenInvocation {
+public class DefaultGenInvocation extends Observable implements GenInvocation {
     private List<Observer> obs=new ArrayList<>();
     /**
      * 上下文中持有一个状态对象
@@ -30,8 +31,11 @@ public class DefaultGenInvocation implements GenInvocation {
      */
     @Getter
     private ModuleConfModel mouduleConf;
+    /**
+     * 存放多个解析过程中的临时内容
+     */
     @Getter@Setter
-    private Object tempContent;
+    private Object tempContent=null;
     public DefaultGenInvocation(String needGenType, ModuleConfModel mouduleConf) {
         this.needGenType = needGenType;
         this.mouduleConf = mouduleConf;
@@ -54,17 +58,17 @@ public class DefaultGenInvocation implements GenInvocation {
     public void  doWork(){
         this.state.doWork(this);
     }
-
-    public void addOberver(Observer o) {
-        this.obs.add(o);
-    }
+//
+//    public void addOberver(Observer o) {
+//        this.obs.add(o);
+//    }
     /**
-     * 通知内容已经生成好了，可以出发联动了
+     * 通知内容已经生成好了，可以触发联动了
      * @param obj
      */
     public void setContentOver(Object obj) {
-//        this.setChanged();
-//        this.notifyObservers(obj);
+        this.setChanged();
+        this.notifyObservers(obj);
 
     }
 }

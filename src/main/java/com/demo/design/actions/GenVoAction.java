@@ -27,6 +27,6 @@ public class GenVoAction extends BaseAction {
 
     @Override
     public GenComponent beforeAction(ModuleConfModel moduleConf) {
-        return super.beforeAction(moduleConf);
+        return super.defaultBeforeAction(moduleConf);
     }
 }

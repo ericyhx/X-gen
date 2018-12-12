@@ -39,7 +39,7 @@ public class DefaultCommand implements GenCommand {
         }
         //3:把map里面的数据按照顺序获取出来，构建职责链
         GenHandler h1=mapHandlers.get(1);
-        for (int i = 1; i <mapHandlers.size()-1; i++) {
+        for (int i = 1; i <mapHandlers.size(); i++) {
             mapHandlers.get(i).setSuccessor(mapHandlers.get(i+1));
         }
         //4: 执行请求
