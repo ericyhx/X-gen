@@ -3,10 +3,10 @@
     <NeedGenTypes>
         <NeedGenType id="GenBusinessEbi">
             <NeedGenOutType id="Console"></NeedGenOutType>
-            <NeedGenOutType id="My"></NeedGenOutType>
             <NeedGenOutType id="File"></NeedGenOutType>
         </NeedGenType>
         <NeedGenType id="GenVo">
+            <NeedGenOutType id="Console"></NeedGenOutType>
             <NeedGenOutType id="File"></NeedGenOutType>
         </NeedGenType>
         <!--
@@ -34,7 +34,7 @@
         <ExtendConf id="codeOutPath" isSingle="true">build</ExtendConf>
         <ExtendConf id="moduleName" isSingle="true">test</ExtendConf>
         <ExtendConf id="moduleNameSuperCase" isSingle="true">Test</ExtendConf>
-        <ExtendConf id="modulePackage" isSingle="true">${gm.getMapConstants().get("prePackage");}.${gm.getMapConstants()}</ExtendConf>
+        <ExtendConf id="modulePackage" isSingle="true">${gm.getMapConstants().get("prePackage");}</ExtendConf>
         <ExtendConf id="action_modelName" isSingle="true">tm</ExtendConf>
         <ExtendConf id="action_queryModelName" isSingle="true">tcm</ExtendConf>
         <ExtendConf id="action_webModelName" isSingle="true">tcm</ExtendConf>

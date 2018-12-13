@@ -76,6 +76,6 @@ public class DefaultTemplate implements TemplateFlyweight {
             //递归
             templateContent= (String) nowReplaceProperties(moduleConf,templateContent);
         }
-        return content;
+        return templateContent;
     }
 }

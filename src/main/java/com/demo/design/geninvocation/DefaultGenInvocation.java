@@ -15,7 +15,6 @@ import java.util.Observer;
  * 本地默认具体实现
  */
 public class DefaultGenInvocation extends Observable implements GenInvocation {
-    private List<Observer> obs=new ArrayList<>();
     /**
      * 上下文中持有一个状态对象
      */

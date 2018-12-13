@@ -3,6 +3,7 @@ package com.demo.design.genconf;
 import com.demo.design.genconf.vo.GenTypeModel;
 import com.demo.design.genconf.vo.GenconfModel;
 import com.demo.design.genconf.vo.ModuleConfModel;
+import com.demo.design.genconf.vo.ThemeModel;
 
 import java.util.Map;
 
@@ -27,4 +28,5 @@ public interface GenConfEbi {
      * @return
      */
     public GenTypeModel getThemeGenType(ModuleConfModel moduleConfModel,String needGenTypeId);
+
 }

@@ -8,8 +8,8 @@ public interface ${moduleNameSuperCase}Ebi{
     public void update(${moduleNameSuperCase}Model obj);
     public void delete(${moduleNameSuperCase}Model obj);
 
-    public ${modulenameSuperCase}Model getByUuid(String uuid);
+    public ${moduleNameSuperCase}Model getByUuid(String uuid);
     public int getCount(${moduleNameSuperCase}QueryModel queryModel);
     public Collection<${moduleNameSuperCase}Model> getAll(boolean need);
-    public Collection<${moduleNameSuperCase}Model> getByCondition(${});
+    public Collection<${moduleNameSuperCase}Model> getByCondition(TestQueryModel queryModel,boolean needPage,int start,int pageshow);
 }

@@ -1,6 +1,6 @@
 package ${modulePackage}.vo;
 
-public class ${moduleNameSuperCase} Model implements java.io.Serializable{
+public class ${moduleNameSuperCase}Model implements java.io.Serializable{
     public static final String TBL_NAME="tble_${moduleNameSuperCase}";
     private String uuid;
     $[com.demo.design.themes.simple.visitors.VoPropertiesDesign]

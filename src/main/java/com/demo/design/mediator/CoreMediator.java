@@ -61,7 +61,8 @@ public class CoreMediator {
         List<String> needGenOutTypeIds = ctx.getMouduleConf().getMapNeedGenTypes().get(ctx.getNeedGenType());
         //2:根据NeedGenOutType的id获得相应的OutType的类的定义
         for(String id:needGenOutTypeIds){
-            String genOutTypeClz = GenConfFactory.cteateGenConfEbi().getThemeGenType(ctx.getMouduleConf(), id).getGenTypeClz();
+
+            String genOutTypeClz = GenConfFactory.cteateGenConfEbi().getGenConf().getThemeById(ctx.getMouduleConf().getUseTheme()).getMapGenOutTypes().get(id);
         //3：用反射创建这些类的实例，这些类就是Observer
             try {
                 Observer o = (Observer) Class.forName(genOutTypeClz).newInstance();

@@ -53,9 +53,9 @@
         -->
     </GenTypes>
     <GenOutTypes>
-        <GenOutType id="Console" type="cn.javaee.xgen.output.types.OutputToConsole"></GenOutType>
-        <GenOutType id="File" type="cn.javaee.xgen.output.types.OutputToFile"></GenOutType>
-        <GenOutType id="My" type="cn.javaee.themes.simple.outputtypes.MyOutput"></GenOutType>
+        <GenOutType id="Console" type="com.demo.design.output.types.OutPut2Console"></GenOutType>
+        <GenOutType id="File" type="com.demo.design.output.types.OutputToFile"></GenOutType>
+        <GenOutType id="My" type="com.demo.design.output.types.MyOutput"></GenOutType>
     </GenOutTypes>
     <Providers>
         <Provider id="XmlGenConf" type="com.demo.design.genconf.implementors.xmlimpl.GenConfXmlImpl"></Provider>

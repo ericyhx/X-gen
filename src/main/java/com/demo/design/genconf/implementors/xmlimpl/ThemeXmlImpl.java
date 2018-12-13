@@ -28,8 +28,8 @@ public class ThemeXmlImpl implements ThemeImplementor {
             GenTypeModel model=new GenTypeModel();
             model.setId(genTypeids[i]);
             model.setGenTypeClz(genTypeClzs[i]);
-            String[] paramIds=parseParamIds(this.getContext());
-            String[] paramValues=parseParamValues(this.getContext());
+            String[] paramIds=parseParamIds(this.getContext(),genTypeids[i]);
+            String[] paramValues=parseParamValues(this.getContext(),genTypeids[i]);
             Map<String,String> paramMap=new HashMap<>();
             for (int j = 0; j < paramIds.length; j++) {
                 paramMap.put(paramIds[j],paramValues[j]);
@@ -69,21 +69,21 @@ public class ThemeXmlImpl implements ThemeImplementor {
         }
         return c;
     }
-    private String[] parseParamValues(Context ctx) {
+    private String[] parseParamValues(Context ctx,String genTypeId) {
         ctx.init();
         ReadXmlExpression re= Parser.parse(new ThemeBuilder().addTheme().addSeparator()
                 .addGenTypes().addSeparator()
-                .addGenType().addDollar().addSeparator()
+                .addGenType().addOpenbacket().addId().addEqual().addOtherValue(genTypeId).addClosebacket().addSeparator()
                 .addParams().addDollar().addSeparator()
                 .addParam().addDollar().build());
         return re.interpret(ctx);
     }
 
-    private String[] parseParamIds(Context ctx) {
+    private String[] parseParamIds(Context ctx,String genTypeId) {
         ctx.init();
         ReadXmlExpression re= Parser.parse(new ThemeBuilder().addTheme().addSeparator()
                 .addGenTypes().addSeparator()
-                .addGenType().addDollar().addSeparator()
+                .addGenType().addOpenbacket().addId().addEqual().addOtherValue(genTypeId).addClosebacket().addSeparator()
                 .addParams().addDollar().addSeparator()
                 .addParam().addDollar().addDot().addId().addDollar().build());
         return re.interpret(ctx);
