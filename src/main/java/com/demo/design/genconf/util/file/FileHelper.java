@@ -43,4 +43,8 @@ public class FileHelper {
             }
         }
     }
+    public static void genDir(String dirPath){
+        File file = new File(dirPath);
+        file.mkdirs();
+    }
 }

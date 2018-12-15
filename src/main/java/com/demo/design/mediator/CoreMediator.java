@@ -14,6 +14,7 @@ import com.demo.design.template.TemplateFactory;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Observer;
 
 /**
@@ -79,5 +80,8 @@ public class CoreMediator {
     }
     public String getThemePath(ModuleConfModel moduleConf){
         return GenConfFactory.cteateGenConfEbi().getGenConf().getThemeById(moduleConf.getUseTheme()).getFileName();
+    }
+    public Map<String,String> getGenTypeParams(ModuleConfModel moduleConf, String genTypeId){
+        return GenConfFactory.cteateGenConfEbi().getThemeGenType(moduleConf, genTypeId).getMapParms();
     }
 }
