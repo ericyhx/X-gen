@@ -84,4 +84,12 @@ public class CoreMediator {
     public Map<String,String> getGenTypeParams(ModuleConfModel moduleConf, String genTypeId){
         return GenConfFactory.cteateGenConfEbi().getThemeGenType(moduleConf, genTypeId).getMapParms();
     }
+    public ModuleConfModel getObserverModuleConf(Object obj){
+        DefaultGenInvocation invocation= (DefaultGenInvocation) obj;
+        return invocation.getMouduleConf();
+    }
+    public String getObserverGenTypeId(Object obj){
+        DefaultGenInvocation invocation= (DefaultGenInvocation) obj;
+        return invocation.getNeedGenType();
+    }
 }
